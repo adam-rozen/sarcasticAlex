@@ -1,0 +1,11 @@
+
+sarcastic alex
+	integrates w/ hardware
+	resonds rudely
+	speech commands
+	profantity mode
+			hey alex, there's no kids here
+	bleep mode
+		lights flash white
+	microsoft speech rest api
+	python

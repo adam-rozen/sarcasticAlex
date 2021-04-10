@@ -9,6 +9,6 @@ cp ~/winhome/Documents/'Sound recordings'/Recording$1.m4a recordings/
 
 echo 'y' | ffmpeg -i "recordings/Recording$1.m4a" Recording.wav
 
-./speech
+./main
 
 explorer.exe response.wav
