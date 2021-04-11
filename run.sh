@@ -8,6 +8,7 @@ if [ $? != 0 ]; then
     
     rm "recordings/wak.wav"
     rm Wake.wav
+    rm alex.wav
 
     val=1
 
@@ -26,7 +27,7 @@ if [ $? != 0 ]; then
     
     done
 
-    echo "ALEX:"
+    aplay alex.wav
 
     arecord -d 4 "recordings/Recording$1.wav"
 

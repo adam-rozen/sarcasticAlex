@@ -31,8 +31,20 @@ if __name__=="__main__":
 
     print(text)
 
-    if text.find('hey alex')!=-1:
+    if text.find('hey alex')!=-1 or text.find('hey alice')!=-1:
         # success
+        text = 'Alex here.'
+        with open('input.txt','w') as out_file:
+            out_file.write(text)
+
+        response = functions.getSpeech(subscription_key, 'input.txt')
+        if response.status_code==200:
+            with open('alex.wav', 'wb') as out_file:
+                out_file.write(response.content)
+        else:
+            print('Text to speech:')
+            print(response.status_code)
+            print(response.reason)
         exit(0)
     else:
         exit(1)
