@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import requests
 import RPi.GPIO as GPIO   # Import the GPIO library.
+import time
 
 def get_token(subscription_key):
     fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'
@@ -86,9 +87,13 @@ def displayColor():
     greenpwm = GPIO.PWM(18, 100)   
     bluepwm = GPIO.PWM(24, 100)    
 
+    time.sleep(0.05)
+
     redpwm.start(0)                      # Start PWM with 0% duty cycle
     greenpwm.start(0)
     bluepwm.start(0)
+
+    time.sleep(0.05)
     
     redpwm.ChangeDutyCycle(100)
     greenpwm.ChangeDutyCycle(100)
