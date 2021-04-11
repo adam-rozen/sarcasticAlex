@@ -5,12 +5,22 @@
 (uname -a) | (grep --binary-files=text -q microsoft - 2>&1 >/dev/null)
 
 if [ $? != 0 ]; then
-    # val=0
-    # while [  ];
-    # do
-    # done
+    
+    val=1
 
-    arecord -d 5 "recordings/Recording$1.wav"
+    while [ val != 0 ];
+    do
+    
+    arecord -d 2 "recordings/Wake.wav"
+    echo 'y' | ffmpeg -i "recordings/Wave.wav" Wave.wav
+
+    ./start
+    val=$?
+    done
+
+    echo ALEX:
+
+    arecord -d 4 "recordings/Recording$1.wav"
 
     echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
 
@@ -19,7 +29,7 @@ if [ $? != 0 ]; then
     aplay response.wav
 
 else
-
+    # for testing on windows
     mv ~/winhome/Documents/'Sound recordings'/Recording.m4a ~/winhome/Documents/'Sound recordings'/"Recording$1.m4a"
 
     cp ~/winhome/Documents/'Sound recordings'/Recording$1.m4a recordings/

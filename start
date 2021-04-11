@@ -1,0 +1,36 @@
+#! /usr/bin/env python3
+
+import functions
+import json
+
+if __name__=="__main__":
+    subscription_key = 'd50b235768634206b00dfc66816ea385'
+    response = functions.getText(subscription_key, 'Wake.wav')
+
+    if response.status_code==200:
+        my_json = json.loads(response.content.decode('utf-8')) # .replace("'", '"')
+        # my_json = response.content.decode("utf-8").replace("'", '"')
+        # print(my_json)
+        recognition_status = my_json['RecognitionStatus']
+        # print(recognition_status)        
+        if recognition_status=='Success':
+            with open('output.txt', 'w') as out_file:
+                out_file.write(my_json['DisplayText'])
+    else:
+        print("Speech to text")
+        print(response.status_code)
+        print(response.reason)
+
+    text = ''
+
+    with open('output.txt', 'r') as in_file:
+        for line in in_file:
+            text += line
+
+    text = text.lower()
+
+    if text.find('hey alex')!=-1:
+        # success
+        exit(0)
+    else:
+        exit(1)
