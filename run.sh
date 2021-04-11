@@ -2,7 +2,7 @@
 
 # [ TEMP=(uname -a) | grep microsoft - ];
 
-TEMP=uname -a | grep --binary-files=text -q microsoft - 2>&1 >/dev/null
+TEMP=(uname -a) | (grep --binary-files=text -q microsoft - 2>&1 >/dev/null); echo $?
 
 if [ $TEMP != 0 ]; then
 
