@@ -1,7 +1,10 @@
 # Write your code here :-)
 import RPi.GPIO as GPIO   # Import the GPIO library.
 
+flag = False
+
 def init():
+    flag = True
     GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
                               # Can use GPIO.setmode(GPIO.BCM) instead to use
                               # Broadcom SOC channel names.
@@ -19,6 +22,9 @@ def init():
     bluepwm.start(0)
 
 def displayColor(r, g, b): #Accepts RGB values on 255 scale
+    if not flag:
+      init()
+      
     redRequest = int(r)
     redpwm.ChangeDutyCycle(redRequest)
 
