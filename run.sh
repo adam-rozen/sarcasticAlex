@@ -12,7 +12,7 @@ if [ $? != 0 ]; then
     do
     
     arecord -d 2 "recordings/Wake.wav"
-    echo 'y' | ffmpeg -hide_banner -i "recordings/Wake.wav" Wake.wav
+    echo 'y' | ffmpeg -hide_banner -loglevel error -i "recordings/Wake.wav" Wake.wav
 
     ./start
     val=$?
