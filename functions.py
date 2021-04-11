@@ -23,11 +23,10 @@ def getSpeech(subscription_key, speech):
 
     # ssml xml
     body = '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">\
-        <voice name="en-US-JennyNeural">'\
-        + text+'</voice>\
-        </speak>'
-
-    # 'Hi Ben, this is Jenny. I see where you are.
+            <voice name="en-US-JennyNeural">'\
+                + text+\
+            '</voice>\
+            </speak>'
 
     # output format
     output = "riff-24khz-16bit-mono-pcm"
@@ -52,8 +51,11 @@ def getText(subscription_key, speech):
     # language
     language = 'en-US'
 
+    # profanity
+    profanity = 'raw'
+
     # speech to text url
-    stt_eastus_url = 'https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language='+language
+    stt_eastus_url = 'https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language='+language+'&profanity='+profanity
 
     # content_type
     content_type='audio/wav; codecs=audio/pcm; samplerate=16000'
