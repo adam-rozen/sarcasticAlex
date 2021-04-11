@@ -18,6 +18,7 @@ if __name__=="__main__":
             with open('output.txt', 'w') as out_file:
                 out_file.write(my_json['DisplayText'])
     else:
+        print("Speech to text")
         print(response.status_code)
         print(response.reason)
 
@@ -56,5 +57,6 @@ if __name__=="__main__":
         with open('response.wav', 'wb') as out_file:
             out_file.write(response.content)
     else:
+        print('Text to speech:')
         print(response.status_code)
         print(response.reason)
