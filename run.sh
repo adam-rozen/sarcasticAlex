@@ -5,6 +5,12 @@
 (uname -a) | (grep --binary-files=text -q microsoft - 2>&1 >/dev/null)
 
 if [ $? != 0 ]; then
+    # val=0
+    # while [  ];
+    # do
+    # done
+
+    arecord -d 5 "recordings/Recording$1.wav"
 
     echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
 
