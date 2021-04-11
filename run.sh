@@ -1,14 +1,25 @@
 #! /bin/bash
 
-# ls ~/winhome/Documents/'Sound recordings'/"Recording.m4a" 
+TEMP=(uname -a) | grep microsoft -
 
+if [ TEMP = '' ]; then
 
-mv ~/winhome/Documents/'Sound recordings'/Recording.m4a ~/winhome/Documents/'Sound recordings'/"Recording$1.m4a"
+    echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
 
-cp ~/winhome/Documents/'Sound recordings'/Recording$1.m4a recordings/
+    ./main
 
-echo 'y' | ffmpeg -i "recordings/Recording$1.m4a" Recording.wav
+    aplay response.wav
 
-./main
+else
 
-explorer.exe response.wav
+    mv ~/winhome/Documents/'Sound recordings'/Recording.m4a ~/winhome/Documents/'Sound recordings'/"Recording$1.m4a"
+
+    cp ~/winhome/Documents/'Sound recordings'/Recording$1.m4a recordings/
+
+    echo 'y' | ffmpeg -i "recordings/Recording$1.m4a" Recording.wav
+
+    ./main
+
+    explorer.exe response.wav
+
+fi
