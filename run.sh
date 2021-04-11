@@ -5,6 +5,9 @@
 (uname -a) | (grep --binary-files=text -q microsoft - 2>&1 >/dev/null)
 
 if [ $? != 0 ]; then
+
+    python3 ./redblue
+
     while [ true ];
     do
         rm "recordings/wak.wav"
