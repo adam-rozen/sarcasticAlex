@@ -1,8 +1,10 @@
 #! /bin/bash
 
-TEMP=(uname -a) | grep microsoft -
+# [ TEMP=(uname -a) | grep microsoft - ];
 
-if [ TEMP = '' ]; then
+TEMP=uname -a | grep --binary-files=text -q microsoft - 2>&1 >/dev/null
+
+if [ $TEMP != 0 ]; then
 
     echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
 
