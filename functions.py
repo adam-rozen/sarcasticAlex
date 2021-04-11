@@ -95,3 +95,5 @@ def displayColor(r, g, b): #Accepts RGB values on 255 scale
     bluepwm.ChangeDutyCycle(b * 100/255)
     
     
+if __name__=="__main__":
+    displayColor(100, 100, 100)
