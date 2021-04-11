@@ -1,7 +1,5 @@
 #! /usr/bin/env python3
 import requests
-import json
-import re
 
 def get_token(subscription_key):
     fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'

@@ -1,84 +1,13 @@
 #! /usr/bin/env python3
-# import functions
-
-import requests
+import functions
 import json
 import re
-
-def get_token(subscription_key):
-    fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'
-    headers = {
-        'Ocp-Apim-Subscription-Key': subscription_key
-    }
-    response = requests.post(fetch_token_url, headers=headers)
-    access_token = str(response.text)
-    print(access_token)
-
-def getSpeech(subscription_key, speech):
-
-    # text to speech url
-    tts_east_us_url = 'https://eastus.tts.speech.microsoft.com/cognitiveservices/v1'
-
-    text = ''
-
-    with open(speech, 'r') as in_file:
-        for line in in_file:
-            text += line
-
-    # ssml xml
-    body = '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">\
-        <voice name="en-US-JennyNeural">'\
-        + text+'</voice>\
-        </speak>'
-
-    # 'Hi Ben, this is Jenny. I see where you are.
-
-    # output format
-    output = "riff-24khz-16bit-mono-pcm"
-
-    # content type
-    content_type = 'application/ssml+xml'
-
-    # application name
-    user_agent = 'SarcasticAlex'
-
-    # headers
-    headers = {
-        'Ocp-Apim-Subscription-Key': subscription_key,
-        'Content-Type' : content_type,
-        'X-Microsoft-OutputFormat': output,
-        'User-Agent': user_agent
-    }
-
-    return requests.post(url=tts_east_us_url, data=body, headers=headers)
-
-def getText(subscription_key, speech):
-    # language
-    language = 'en-US'
-
-    # speech to text url
-    stt_eastus_url = 'https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language='+language
-
-    # content_type
-    content_type='audio/wav; codecs=audio/pcm; samplerate=16000'
-
-    # accept
-    accept = 'application/json;text/xml'
-
-    # headers
-    headers = {
-        'Accept': accept,
-        'Ocp-Apim-Subscription-Key': subscription_key,
-        'Content-Type' : content_type
-    }
-
-    with open(speech, 'rb') as in_file:
-        return requests.post(url=stt_eastus_url, data=in_file, headers=headers)
+import requests
 
 if __name__=="__main__":
     subscription_key = 'd50b235768634206b00dfc66816ea385'
 
-    response = getText(subscription_key, 'Recording.wav')
+    response = functions.getText(subscription_key, 'Recording.wav')
     if response.status_code==200:
         my_json = json.loads(response.content.decode('utf-8')) # .replace("'", '"')
         # my_json = response.content.decode("utf-8").replace("'", '"')
@@ -111,14 +40,18 @@ if __name__=="__main__":
     elif text.find('turn the lights red')!=-1:
         text = 'Okay, turning the lights red'
     elif text.find('turn the lights')!=-1:
-        text = 'I don\t know how to turn the lights'+re.search('turn the lights (\w)', text)
+        match = re.search('turn the lights (\w+)', text)
+        if match != None:
+            text = 'I don\'t know how to turn the lights ' + match.groups()[0] + "."
+        else:
+            text = 'Sorry, I don\'t understand'
     else:
         text = 'Sorry, I don\'t understand'
 
     with open('input.txt','w') as out_file:
         out_file.write(text)
 
-    response = getSpeech(subscription_key, 'input.txt')
+    response = functions.getSpeech(subscription_key, 'input.txt')
     if response.status_code==200:
         with open('response.wav', 'wb') as out_file:
             out_file.write(response.content)
