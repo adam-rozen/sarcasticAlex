@@ -1,5 +1,7 @@
 #! /usr/bin/env python3
 import requests
+import RPi.GPIO as GPIO   # Import the GPIO library.
+import time               # Import time library
 
 def get_token(subscription_key):
     fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'
@@ -73,11 +75,8 @@ def getText(subscription_key, speech):
     with open(speech, 'rb') as in_file:
         return requests.post(url=stt_eastus_url, data=in_file, headers=headers)
 
-def setupLEDs():
-    
-    import RPi.GPIO as GPIO   # Import the GPIO library.
-    import time               # Import time library
 
+def displayColor(r, g, b): #Accepts RGB values on 256 scale
     GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
 
     GPIO.setup(12, GPIO.OUT)  # Set GPIO pin 12 to output mode.
@@ -91,11 +90,9 @@ def setupLEDs():
     redpwm.start(0)                      # Start PWM with 0% duty cycle
     greenpwm.start(0)
     bluepwm.start(0)
-
-def displayColor(r, g, b): #Accepts RGB values on 256 scale, MUST run setupLEDs() first
     
-    redpwm.ChangeDutyCycle(r * 256/100)
-    greenpwm.ChangeDutyCycle(g * 256/100)
-    bluepwm.ChangeDutyCycle(b * 256/100)
+    redpwm.ChangeDutyCycle(r * 100/255)
+    greenpwm.ChangeDutyCycle(g * 100/255)
+    bluepwm.ChangeDutyCycle(b * 100/255)
     
     
