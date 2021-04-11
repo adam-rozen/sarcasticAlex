@@ -21,13 +21,13 @@ bluepwm.start(0)
 try:
   while True:                      # Loop until Ctl C is pressed to stop.
 
-    redRequest = input("RED:")
+    redRequest = int(input("RED:"))
     redpwm.ChangeDutyCycle(redRequest)
 
-    greenRequest = input("GREEN:")
+    greenRequest = int(input("GREEN:"))
     greenpwm.ChangeDutyCycle(greenRequest)
 
-    blueRequest = input("BLUE:")
+    blueRequest = int(input("BLUE:"))
     bluepwm.ChangeDutyCycle(blueRequest)
 
 except KeyboardInterrupt:
