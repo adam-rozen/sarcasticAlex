@@ -9,3 +9,6 @@ sarcastic alex
 		lights flash white
 	microsoft speech rest api
 	python
+
+loop if no alex
+if alex, flash, listen 5
