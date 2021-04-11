@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO   # Import the GPIO library.
 
 flag = False
 
+global redpwm, greenpwm, bluepwm
+
 def init():
     flag = True
     GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
@@ -24,7 +26,7 @@ def init():
 def displayColor(r, g, b): #Accepts RGB values on 255 scale
     if not flag:
       init()
-      
+
     redRequest = int(r)
     redpwm.ChangeDutyCycle(redRequest)
 
