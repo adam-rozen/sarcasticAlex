@@ -29,6 +29,8 @@ if __name__=="__main__":
 
     text = text.lower()
 
+    print('text')
+
     if text.find('hey alex')!=-1:
         # success
         exit(0)
