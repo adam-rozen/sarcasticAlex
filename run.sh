@@ -11,12 +11,14 @@ if [ $? != 0 ]; then
     while [ $val != 0 ];
     do
     
-    arecord -d 2 "recordings/Wake.wav"
-    echo 'y' | (ffmpeg -hide_banner -loglevel error -i "recordings/Wake.wav" Wake.wav)
+    arecord -d 2 "recordings/wak.wav"
+    (ffmpeg -hide_banner -loglevel error -i "recordings/wak.wav" Wake.wav)
 
     ./start
     val=$?
     echo $val
+    rm Wake.wav
+    rm "recordings/wak.wav"
     done
 
     echo "ALEX:"
