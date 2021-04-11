@@ -3,6 +3,7 @@ import functions
 import json
 import re
 import requests
+import random
 
 if __name__=="__main__":
     subscription_key = 'd50b235768634206b00dfc66816ea385'
@@ -31,21 +32,45 @@ if __name__=="__main__":
     text = text.lower()
 
     if text.find('turn on the lights')!=-1:
-        text = 'Okay, turning on the lights'
+        text = 'Hello darkness my old friend'
+        # turns lights purple
+    elif text.find('party time')!=-1:
+        text = 'Can you really party alone? Ha, ha, ha. loser'
+        # turns lights off
+    elif text.find('time for bed')!=-1:
+        text = 'Wake up!! No sleep for you!'
+        # turns lights white
     elif text.find('turn off the lights')!=-1:
         text = 'Okay, turning off the lights'
+        # turns lights off
     elif text.find('turn the lights green')!=-1:
         text = 'Okay, turning the lights green'
+        # turns lights green
     elif text.find('turn the lights blue')!=-1:
         text = 'Okay, turning the lights blue'
+        # turns lights blue
     elif text.find('turn the lights red')!=-1:
         text = 'Okay, turning the lights red'
+        # turns lights red
     elif text.find('turn the lights')!=-1:
         match = re.search('turn the lights (\w+)', text)
         if match != None:
             text = 'I don\'t know how to turn the lights ' + match.groups()[0] + "."
         else:
             text = 'Sorry, I don\'t understand'
+    elif text.find('tell ben a message')!=-1:
+        x = random.randint(0, 3)
+        if x == 0:
+            text = 'Run away, I\'m Coming!'
+        elif x == 1:
+            text = 'Epilepsy Warning!'
+        else:
+            text = 'Ben, a Message'
+    elif text.find('you suck alex')!=-1:
+        text = 'Whoever said that, your mom\'s a hoe'
+    elif text.find('notice me senpai')!=-1:
+        text = 'Cricket, Cricket'
+        # turns lights red
     else:
         text = 'Sorry, I don\'t understand'
 
