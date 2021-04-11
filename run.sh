@@ -5,38 +5,39 @@
 (uname -a) | (grep --binary-files=text -q microsoft - 2>&1 >/dev/null)
 
 if [ $? != 0 ]; then
-    
-    rm "recordings/wak.wav"
-    rm Wake.wav
-    rm alex.wav
-
-    val=1
-
-    while [ $val != 0 ];
+    while [ true ];
     do
-    
-    arecord -d 2 "recordings/wak.wav"
-    ffmpeg -hide_banner -loglevel error -i "recordings/wak.wav" Wake.wav
+        rm "recordings/wak.wav"
+        rm Wake.wav
+        rm alex.wav
 
-    ./start
-    val=$?
-    
-    # echo $val
-    rm Wake.wav
-    rm "recordings/wak.wav"
-    
+        val=1
+
+        while [ $val != 0 ];
+        do
+        
+        arecord -d 2 "recordings/wak.wav"
+        ffmpeg -hide_banner -loglevel error -i "recordings/wak.wav" Wake.wav
+
+        ./start
+        val=$?
+        
+        # echo $val
+        rm Wake.wav
+        rm "recordings/wak.wav"
+        
+        done
+
+        aplay alex.wav
+
+        arecord -d 4 "recordings/Recording$1.wav"
+
+        echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
+
+        ./main
+
+        aplay response.wav
     done
-
-    aplay alex.wav
-
-    arecord -d 4 "recordings/Recording$1.wav"
-
-    echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
-
-    ./main
-
-    aplay response.wav
-
 else
     # for testing on windows
     mv ~/winhome/Documents/'Sound recordings'/Recording.m4a ~/winhome/Documents/'Sound recordings'/"Recording$1.m4a"
