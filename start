@@ -4,7 +4,7 @@ import functions
 import json
 
 if __name__=="__main__":
-    subscription_key = 'd50b235768634206b00dfc66816ea385'
+    subscription_key = Key.Speech
     response = functions.getText(subscription_key, 'Wake.wav')
 
     if response.status_code==200:

@@ -5,18 +5,17 @@ import json
 import re
 import requests
 import random
-
+import Key
 
 if __name__=="__main__":
-    subscription_key = 'd50b235768634206b00dfc66816ea385'
+    subscription_key = Key.Speech
 
     response = functions.getText(subscription_key, 'Recording.wav')
     if response.status_code==200:
-        my_json = json.loads(response.content.decode('utf-8')) # .replace("'", '"')
-        # my_json = response.content.decode("utf-8").replace("'", '"')
-        # print(my_json)
+        my_json = json.loads(response.content.decode('utf-8'))
+
         recognition_status = my_json['RecognitionStatus']
-        # print(recognition_status)        
+
         if recognition_status=='Success':
             with open('output.txt', 'w') as out_file:
                 out_file.write(my_json['DisplayText'])
