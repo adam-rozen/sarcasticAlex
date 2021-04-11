@@ -90,9 +90,9 @@ def displayColor(r, g, b): #Accepts RGB values on 255 scale
     greenpwm.start(0)
     bluepwm.start(0)
     
-    redpwm.ChangeDutyCycle(r * 100/255)
-    greenpwm.ChangeDutyCycle(g * 100/255)
-    bluepwm.ChangeDutyCycle(b * 100/255)
+    redpwm.ChangeDutyCycle(r)
+    greenpwm.ChangeDutyCycle(g)
+    bluepwm.ChangeDutyCycle(b)
     
     
 if __name__=="__main__":
