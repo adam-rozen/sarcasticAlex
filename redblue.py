@@ -20,19 +20,19 @@ bluepwm.start(0)
 try:
   while True:                      # Loop until Ctl C is pressed to stop.
       redpwm.ChangeDutyCycle(50)
-      time.sleep(22)
+      time.sleep(2)
       print("half red")
 
       redpwm.ChangeDutyCycle(100)
-      time.sleep(22)
+      time.sleep(2)
       print("full red")
 
       redpwm.ChangeDutyCycle(50)
-      time.sleep(22)
+      time.sleep(2)
       print("half blue")
 
       redpwm.ChangeDutyCycle(100)
-      time.sleep(22)
+      time.sleep(2)
       print("full blue")
 
 except KeyboardInterrupt:
