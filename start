@@ -35,12 +35,12 @@ if __name__=="__main__":
                     print(response.status_code)
                     print(response.reason)
                 exit(0)
-            else:
-                exit(1)
+            
         else:
-            print("no Success for speech to text")
+            print("bad speech to text")
     else:
         print("Speech to text")
         print(response.status_code)
         print(response.reason)
 
+exit(1)
