@@ -32,7 +32,7 @@ if [ $? != 0 ]; then
 
         arecord -d 4 "recordings/Recording$1.wav"
 
-        echo 'y' | ffmpeg -i "recordings/Recording$1.wav" Recording.wav
+        echo 'y' | ffmpeg -hide_banner -loglevel error -i "recordings/Recording$1.wav" Recording.wav
 
         ./main
 
