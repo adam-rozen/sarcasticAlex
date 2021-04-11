@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 import requests
 import RPi.GPIO as GPIO   # Import the GPIO library.
-import time               # Import time library
 
 def get_token(subscription_key):
     fetch_token_url = 'https://eastus.api.cognitive.microsoft.com/sts/v1.0/issuetoken'
@@ -76,11 +75,11 @@ def getText(subscription_key, speech):
         return requests.post(url=stt_eastus_url, data=in_file, headers=headers)
 
 
-def displayColor(r, g, b): #Accepts RGB values on 256 scale
+def displayColor(r, g, b): #Accepts RGB values on 255 scale
     GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
 
     GPIO.setup(12, GPIO.OUT)  # Set GPIO pin 12 to output mode.
-    GPIO.setup(18, GPIO.OUT)  # Set GPIO pin 12 to output mode.
+    GPIO.setup(18, GPIO.OUT)  # Set GPIO pin 18 to output mode.
     GPIO.setup(24, GPIO.OUT)
 
     redpwm = GPIO.PWM(12, 100)   # Initialize PWM on pwmPin 100Hz frequency
