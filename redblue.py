@@ -37,6 +37,8 @@ try:
 
 except KeyboardInterrupt:
   print("Ctl C pressed - ending program")
+  GPIO.cleanup()
 
-pwm.stop()                         # stop PWM
+redpwm.stop() # stop PWM
+bluepwm.stop()
 GPIO.cleanup()
