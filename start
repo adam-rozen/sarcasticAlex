@@ -2,6 +2,7 @@
 
 import functions
 import json
+import Key
 
 if __name__=="__main__":
     subscription_key = Key.Speech
