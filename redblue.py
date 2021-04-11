@@ -12,8 +12,6 @@ GPIO.setup(18, GPIO.OUT)  # Set GPIO pin 12 to output mode.
 redpwm = GPIO.PWM(12, 100)   # Initialize PWM on pwmPin 100Hz frequency
 bluepwm = GPIO.PWM(18, 100)   # Initialize PWM on pwmPin 100Hz frequency
 
-
-
 redpwm.start(0)                      # Start PWM with 0% duty cycle
 bluepwm.start(0)
 
@@ -27,11 +25,11 @@ try:
       time.sleep(2)
       print("full red")
 
-      redpwm.ChangeDutyCycle(50)
+      bluepwm.ChangeDutyCycle(50)
       time.sleep(2)
       print("half blue")
 
-      redpwm.ChangeDutyCycle(100)
+      bluepwm.ChangeDutyCycle(100)
       time.sleep(2)
       print("full blue")
 
