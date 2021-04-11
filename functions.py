@@ -75,7 +75,7 @@ def getText(subscription_key, speech):
     with open(speech, 'rb') as in_file:
         return requests.post(url=stt_eastus_url, data=in_file, headers=headers)
 
-def displayColor():
+def displayColor(r,g,b):
 # def displayColor(r, g, b): #Accepts RGB values on 255 scale
     GPIO.setmode(GPIO.BOARD)  # Set Pi to use pin number when referencing GPIO pins.
 
@@ -87,17 +87,17 @@ def displayColor():
     greenpwm = GPIO.PWM(18, 100)   
     bluepwm = GPIO.PWM(24, 100)    
 
-    time.sleep(0.05)
+    # time.sleep(0.05)
 
     redpwm.start(0)                      # Start PWM with 0% duty cycle
     greenpwm.start(0)
     bluepwm.start(0)
 
-    time.sleep(0.05)
+    # time.sleep(0.05)
     
-    redpwm.ChangeDutyCycle(100)
-    greenpwm.ChangeDutyCycle(100)
-    bluepwm.ChangeDutyCycle(100)
+    redpwm.ChangeDutyCycle(r)
+    greenpwm.ChangeDutyCycle(g)
+    bluepwm.ChangeDutyCycle(b)
     
     
 if __name__=="__main__":

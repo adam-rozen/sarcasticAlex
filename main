@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 import functions
-import redblue
+# import functions
 import json
 import re
 import requests
@@ -36,31 +36,31 @@ if __name__=="__main__":
     if text.find('turn on the lights')!=-1:
         text = 'Hello darkness my old friend'
         # turns lights purple
-        redblue.displayColor(106, 0, 128)
+        # functions.displayColor(106, 0, 128)
     elif text.find('party time')!=-1:
         text = 'Can you really party alone? Ha, ha, ha. loser'
         # turns lights off
-        redblue.displayColor(0, 0, 0)
+        # functions.displayColor(0, 0, 0)
     elif text.find('time for bed')!=-1:
         text = 'Wake up!! No sleep for you!'
         # turns lights white
-        redblue.displayColor(255, 255, 255)
+        # functions.displayColor(255, 255, 255)
     elif text.find('turn off the lights')!=-1:
         text = 'Okay, turning off the lights'
         # turns lights off
-        redblue.displayColor(0, 0, 0)
+        # functions.displayColor(0, 0, 0)
     elif text.find('turn the lights green')!=-1:
         text = 'Okay, turning the lights green'
         # turns lights green
-        redblue.displayColor(0, 255, 0)
+        # functions.displayColor(0, 255, 0)
     elif text.find('turn the lights blue')!=-1:
         text = 'Okay, turning the lights blue'
         # turns lights blue
-        redblue.displayColor(0, 0, 255)
+        # functions.displayColor(0, 0, 255)
     elif text.find('turn the lights red')!=-1:
         text = 'Okay, turning the lights red'
         # turns lights red
-        redblue.displayColor(255, 0, 0)
+        # functions.displayColor(255, 0, 0)
     elif text.find('turn the lights')!=-1:
         match = re.search('turn the lights (\w+)', text)
         if match != None:

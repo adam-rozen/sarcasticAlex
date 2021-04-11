@@ -6,7 +6,7 @@
 
 if [ $? != 0 ]; then
 
-    python3 ./redblue.py
+    # python3 ./redblue.py
 
     while [ true ];
     do
